@@ -11,7 +11,7 @@ function App() {
         <Header/>
           <Switch>
             <Route path="/" exact component={Homepage}></Route>
-            <Route path="/PostDetail" component={PostDetail}></Route>
+            <Route path="/movie/:id" component={PostDetail}></Route>
           </Switch>
         <Footer/>
       </Router>

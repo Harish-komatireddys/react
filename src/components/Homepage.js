@@ -36,7 +36,7 @@ const Homepage = ()=> {
     }
 
     let getNowPlaying = async () => {
-        let response = await fetch('https://api.themoviedb.org/3/movie/popular?api_key=ec8abf5a2d8ae8115a415519338e1dec&language=en-US&page=1')
+        let response = await fetch('https://api.themoviedb.org/3/movie/now_playing?api_key=ec8abf5a2d8ae8115a415519338e1dec&language=en-US&page=1')
         let data = await response.json();
         setNowPlaying(data.results);
     }

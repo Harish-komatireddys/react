@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Post = (props) => {
     
-    const poster = `https://image.tmdb.org/t/p/original${props.post.poster_path}`;
+    const poster = `https://image.tmdb.org/t/p/w342${props.post.poster_path}`;
     return ( 
         <li class="people-card movie-list">
             <div className="">

@@ -25,7 +25,13 @@ ul, ol{
 .color-main{
   color: var(--main-color);
 }
-
+.btn:focus{
+  outline: none;
+  box-shadow: 0 0 0 0.25rem rgb(60 153 110 / 0%);
+}
+.bg-gradinat{
+  background-color: rgba(10.20%, 9.80%, 9.80%, 1.00);
+}
 .footer-bg{
   background-color: #eff2f9;
 }
@@ -48,4 +54,7 @@ ul, ol{
 }
 .footer-links li a:hover{
   color: var(--main-color);
+}
+.br-12{
+  border-radius: 12px;
 }

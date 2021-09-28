@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './PostDetail.css';
 
 const PostDetail = () =>{
-    let [upcoming, setUpcomingmovies]  = useState([])
-    
+    let [movie, setMovie]  = useState([])
+    const {id} = useParams();    
+
     useEffect(() => {
-        getupcomingMovie()
+        getMovieDetails()
     }, [])
 
 
-    let getupcomingMovie = async () =>{
-        let response = await fetch ("https://api.themoviedb.org/3/movie/297802?api_key=6e64c8aa7804148fec2194d931cec67b&append_to_response=credits")
+    let getMovieDetails = async () =>{
+        let response = await fetch (`https://api.themoviedb.org/3/movie/${id}?api_key=6e64c8aa7804148fec2194d931cec67b&append_to_response=credits`)
         let data = await response.json();
-        setUpcomingmovies(data.results);
+        setMovie(data);
     }
+    console.log(movie);
+    const poster = `https://image.tmdb.org/t/p/w342${movie.poster_path}`;
     return(
         <section className="bg-gradinat p-5">
             <div className="container-fluid">
@@ -22,14 +25,14 @@ const PostDetail = () =>{
                     <div className="col-lg-12">
                         <div className="row">
                             <div className="col-lg-3">
-                                <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/bOFaAXmWWXC3Rbv4u4uM9ZSzRXP.jpg" alt="" title="" className="img-fluid br-12"/>
+                                <img src={poster} alt="{movie.original_title}" title="{movie.original_title}" className="img-fluid br-12"/>
                             </div>
                             <div className="col-lg-9">
                                 <div className="details-sections">
-                                    <h1><Link to="/">The Flash</Link><span>(2014)</span> </h1>
+                                    <h1><Link to="/">{movie.original_title}</Link><span>({movie.release_date})</span> </h1>
                                     <div className="movie-deatils">
                                         <span className="border p-1">U/A</span>
-                                        <span className="ms-2">06/25/2021 (IN)</span>
+                                        <span className="ms-2">{movie.release_date} (IN)</span>
                                         <span>&nbsp; | &nbsp;</span>
                                         <span>
                                             <Link>Action, </Link>
@@ -59,7 +62,7 @@ const PostDetail = () =>{
                                         <h4 className="tagline"><i>Justice is coming.</i></h4>
                                         <h3 className="disc-heading">Overview</h3>
                                         <div className="overview">
-                                            <p>Dominic Toretto and his crew battle the most skilled assassin and high-performance driver they've ever encountered: his forsaken brother.</p>
+                                            <p>{movie.overview}</p>
                                         </div>
                                     </div>
                                 </div>
